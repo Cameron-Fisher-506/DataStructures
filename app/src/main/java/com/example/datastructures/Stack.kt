@@ -11,6 +11,8 @@ fun main() {
 }
 
 /**
+ * Computational Complexity
+ *
  * top(): O(1)
  * push(value: T): O(1)
  * pop(): O(1)

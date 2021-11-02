@@ -20,7 +20,7 @@ fun main() {
  * Computational Complexity
  *
  * enqueue: O(1)
- * dequeue: O(1)
+ * dequeue: O(n) we have to shift the elements to the front of the queue
  * front: O(1)
  * back: O(1)
  */
