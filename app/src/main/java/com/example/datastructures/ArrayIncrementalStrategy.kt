@@ -33,4 +33,50 @@ class ArrayIncrementalStrategy {
         storage[size] = value
         size++
     }
+
+    fun removeAtOrNull(index: Int): Int? {
+        return when {
+            size == 0 -> null
+            index in 0 until size -> {
+                val value = storage[index]
+                storage[index] = 0
+
+                val tempArray: Array<Int> = Array(storage.size) { 0 }
+                var j = 0
+                for (i in storage.indices) {
+                    if (storage[i] != 0) {
+                        tempArray[j] = storage[i]
+                        j++
+                    }
+                }
+                storage = tempArray
+                size--
+                value
+            }
+            else -> null
+        }
+    }
+
+    fun size(): Int = size
+
+    fun get(index: Int): Int? {
+        return when {
+            size == 0 -> null
+            index in 0 until size -> {
+                storage[index]
+            }
+            else -> null
+        }
+    }
+
+    fun set(index: Int, value: Int) {
+        if (index in 0 until size) {
+            storage[index] = value
+        }
+    }
+
+    fun removeAll() {
+        for (i in storage.indices) { storage[i] = 0 }
+        size = 0
+    }
 }
