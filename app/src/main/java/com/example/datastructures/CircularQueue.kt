@@ -21,6 +21,8 @@ class CircularQueue(var size: Int = 0) {
 
     private fun isFull(): Boolean = front == (rear + 1) % size
 
+    fun peek(): Int = front
+
     fun enqueue(element: Int) {
         if (!isFull()) {
             if (front == -1) {
