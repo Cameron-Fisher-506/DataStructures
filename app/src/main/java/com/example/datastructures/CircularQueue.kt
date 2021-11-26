@@ -3,13 +3,8 @@ package com.example.datastructures
 fun main() {
     val circularQueue: CircularQueue = CircularQueue(3)
     circularQueue.enqueue(15)
-    circularQueue.enqueue(5)
-    circularQueue.enqueue(235)
-
-    println(circularQueue.dequeue())
-    circularQueue.enqueue(325)
-    println(circularQueue.dequeue())
-    println(circularQueue.dequeue())
+    circularQueue.enqueue(15)
+    println(circularQueue.size())
 }
 
 class CircularQueue(var size: Int = 0) {
@@ -17,11 +12,13 @@ class CircularQueue(var size: Int = 0) {
     private var rear: Int = -1
     private var storage: Array<Int> = Array(size) { 0 }
 
-    private fun isEmpty(): Boolean = front == -1
-
     private fun isFull(): Boolean = front == (rear + 1) % size
 
-    fun peek(): Int = front
+    fun isEmpty(): Boolean = front == rear
+
+    fun size(): Int = (size - front + rear) % size + 1
+
+    fun front(): Int = front
 
     fun enqueue(element: Int) {
         if (!isFull()) {

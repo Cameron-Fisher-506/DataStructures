@@ -29,4 +29,6 @@ class Stack<T> {
     fun pop(): T? = storage.removeLastOrNull()
 
     fun size(): Int = storage.size
+
+    fun isEmpty(): Boolean = storage.isEmpty()
 }

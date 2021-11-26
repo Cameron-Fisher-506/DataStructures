@@ -17,13 +17,17 @@ class ArrayIncrementalStrategy {
     var storage: Array<Int> = Array(0) { 0 }
     var size: Int = 0
 
+    companion object {
+        private const val INCREMENTAL_SIZE = 1
+    }
+
     fun add(value: Int) {
         if (storage.isEmpty()) {
-            storage = Array(1) { 0 }
+            storage = Array(10) { 0 }
         }
 
         if (size == storage.size) {
-            val tempArray: Array<Int> = Array(storage.size + 1) { 0 }
+            val tempArray: Array<Int> = Array(storage.size + INCREMENTAL_SIZE) { 0 }
             for (i in storage.indices) {
                 tempArray[i] = storage[i]
             }
@@ -34,9 +38,9 @@ class ArrayIncrementalStrategy {
         size++
     }
 
-    fun removeAtOrNull(index: Int): Int? {
+    fun remove(index: Int): Int? {
         return when {
-            size == 0 -> null
+            isEmpty() -> null
             index in 0 until size -> {
                 val value = storage[index]
                 storage[index] = 0
@@ -61,7 +65,7 @@ class ArrayIncrementalStrategy {
 
     fun get(index: Int): Int? {
         return when {
-            size == 0 -> null
+            isEmpty() -> null
             index in 0 until size -> {
                 storage[index]
             }
@@ -75,8 +79,5 @@ class ArrayIncrementalStrategy {
         }
     }
 
-    fun removeAll() {
-        for (i in storage.indices) { storage[i] = 0 }
-        size = 0
-    }
+    fun isEmpty(): Boolean = size == 0
 }

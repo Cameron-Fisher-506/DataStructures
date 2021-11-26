@@ -8,7 +8,6 @@ fun main() {
     arrayDoublingStrategy.add(40)
     arrayDoublingStrategy.add(40)
 
-    arrayDoublingStrategy.removeAll()
     println(arrayDoublingStrategy.size())
 }
 
@@ -18,7 +17,7 @@ class ArrayDoublingStrategy {
 
     fun add(value: Int) {
         if (storage.isEmpty()) {
-            storage = Array(1) { 0 }
+            storage = Array(10) { 0 }
         }
 
         if (size == storage.size) {
@@ -33,9 +32,9 @@ class ArrayDoublingStrategy {
         size++
     }
 
-    fun removeAtOrNull(index: Int): Int? {
+    fun remove(index: Int): Int? {
         return when {
-            size == 0 -> null
+            isEmpty() -> null
             index in 0 until size -> {
                 val value = storage[index]
                 storage[index] = 0
@@ -60,7 +59,7 @@ class ArrayDoublingStrategy {
 
     fun get(index: Int): Int? {
         return when {
-            size == 0 -> null
+            isEmpty() -> null
             index in 0 until size -> {
                 storage[index]
             }
@@ -74,8 +73,5 @@ class ArrayDoublingStrategy {
         }
     }
 
-    fun removeAll() {
-        for (i in storage.indices) { storage[i] = 0 }
-        size = 0
-    }
+    fun isEmpty(): Boolean = size == 0
 }
