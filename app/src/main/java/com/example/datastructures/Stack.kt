@@ -14,19 +14,19 @@ fun main() {
  * Computational Complexity
  *
  * top(): O(1)
- * push(value: T): O(1)
+ * push(element: T): O(1)
  * pop(): O(1)
  */
 class Stack<T> {
-    private val storage: ArrayList<T> = ArrayList()
+    private val storage: SinglyLinkedList<T> = SinglyLinkedList()
 
-    fun top(): T? = storage.lastOrNull()
+    fun top(): T? = storage.head?.element
 
-    fun push(value: T) {
-        storage.add(value)
+    fun push(element: T) {
+        storage.addFirst(SNode(element))
     }
 
-    fun pop(): T? = storage.removeLastOrNull()
+    fun pop(): T? = storage.removeFirstOrNull()?.element
 
     fun size(): Int = storage.size
 
